@@ -1,10 +1,12 @@
 // page load intro
 require('../css/style.scss');
+require('../css/progress.scss');
 
 var Home = (function () {
     const mainLargePhoto= document.getElementById("mainLargePhoto");
     const livingRoomPhoto = document.getElementById("livingRoomPhoto");
     const quoteParagraph = document.getElementById("quote");
+    const progressContainer = document.getElementById("progressContainer")
 
     function Home() {
         this.init();
@@ -21,6 +23,7 @@ var Home = (function () {
         img.onload = function() { 
             mainLargePhoto.setAttribute("src", "https://www.halfdomephoto.com/img/mobile-bg.jpg");
             mainLargePhoto.classList.add("loaded");
+            progressContainer.style.opacity = 0;
         }
     };
 
@@ -41,6 +44,7 @@ var Home = (function () {
     
     Home.prototype.mainImageAnimationFinalize = function () {
         if (!mainLargePhoto.classList.contains("fadeout")) {
+            livingRoomPhoto.style.opacity = 1;
             mainLargePhoto.classList.add("fadeout");
         }
     };
