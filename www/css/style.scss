@@ -10,8 +10,8 @@ body {
     overflow: hidden;
     background-color: rgb(66, 66, 66);
     
-    img {
-        position: absolute;
+    #mainLargePhoto {
+        // position: absolute;
         top: 0;
         left: 0;
         height: 100vh;
@@ -19,13 +19,33 @@ body {
         opacity: 0;
         
         &.loaded.animate {
+            left: 0;
+            opacity: 0;
+            transform: translateX(calc(-100% + 100vw));
+            animation: slowpan 20s ease-in-out 0s 1 normal forwards;
+        }
+        &.loaded.animate.fadeout {
             opacity: 100;
-            transform:translateX(calc(-100% + 100vw));
-            -webkit-animation: slowpan 30s ease-in-out 0s;
+            animation: imagefadeout 4s ease-in 1s 1 normal forwards;;
         }
     }
 
-    p {
+    #livingRoomPhoto {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        left: 50%;
+        max-width: 100vw;
+        max-height: 90vh;
+        width: auto;
+        height: auto;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(.9);
+
+    }
+
+    #quote {
         position: absolute;
         z-index: 2;
         top: 50%;
@@ -34,9 +54,13 @@ body {
         color: white;
         text-align: center;
         font-family: 'Lora', san-serif;
-        animation: fadein 4s ease-in-out;
+        animation: fadein 6s;
+        opacity: 0;
         span {
             font-style: italic;
+        }
+        &.fadeout {
+            animation: fadeout 4s;
         }
     }
 }
@@ -52,19 +76,40 @@ body {
     }
 }
 
-@-webkit-keyframes slowpan {
+@keyframes fadeout {
+    from { 
+        opacity: 1; 
+        transform: translateX(-50%) translateY(-50%);
+    }
+    to   { 
+        opacity: 0; 
+        transform: translateX(-50%) translateY(-65%);
+    }
+}
+
+@keyframes imagefadeout {
+    from { 
+        opacity: 1;
+        transform: translateX(calc(-100% + 100vw)) scale(1);
+    }
+    to   { 
+        opacity: 0;
+        transform: translateX(calc(-100% + 100vw)) scale(1.1);
+    }
+}
+
+@keyframes slowpan {
     0% {
-        transform:translateX(0px);
+        transform:translateX(0);
         opacity: 0;
     }
-
-    50% {
-        opacity: 100;
+    
+    90% {
+        opacity: 10;
     }
     
     100% {
         opacity: 100;
         transform:translateX(calc(-100% + 100vw));
     }
-    
 }
