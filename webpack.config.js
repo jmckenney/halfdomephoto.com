@@ -1,6 +1,11 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 
+const extractSass = new ExtractTextPlugin({
+    filename: "./www/css/style.css",
+    disable: process.env.NODE_ENV === "development"
+});
+
 module.exports = {
     entry: './www/js/index.js',
     output: {
@@ -12,7 +17,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -22,29 +27,20 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-
-                    // Could also be write as follow:
-                    // use: 'css-loader?modules&importLoader=2&sourceMap&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader'
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            query: {
-                                // modules: true,
-                                sourceMap: true,
-                                importLoaders: 2,
-                                // localIdentName: '[name]__[local]___[hash:base64:5]'
-                            }
-                        },
-                        'sass-loader'
-                    ]
+                use: extractSass.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "sass-loader"
+                    }],
+                    // use style-loader in development
+                    fallback: "style-loader"
                 }),
             },
         ]
     },
     plugins: [
-        new ExtractTextPlugin("www/css/style.css")
+        extractSass
     ],
     devtool: 'inline-source-map'
 };
