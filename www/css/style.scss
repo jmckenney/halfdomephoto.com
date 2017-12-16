@@ -64,6 +64,22 @@ body {
     }
 }
 
+main {
+    box-sizing: border-box;
+    img {
+        width: 100%;
+        @media screen and (min-width:600px) {
+            float: left;
+            width: 50%;
+            display: inline-block;
+            margin-bottom: 1em;
+        }
+    }
+    .small {
+        font-size: .9em;
+    }
+}
+
 img#livingRoomPhoto {
     max-width: 100%;
 }

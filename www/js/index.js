@@ -2,6 +2,7 @@
 require('../css/style.scss');
 require('../css/progress.scss');
 require('../css/scrollArrow.scss');
+require('../css/table.scss');
 
 var Home = (function () {
     const mainLargePhoto= document.getElementById("mainLargePhoto");
