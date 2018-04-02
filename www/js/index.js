@@ -25,9 +25,9 @@ var Home = (function () {
 
     Home.prototype.waitForMainImageLoad = function () {
         let img = new Image();
-        img.src = "https://www.halfdomephoto.com/img/mobile-bg.jpg";
+        img.src = "http://192.168.1.3:8080/img/portland-skyline-photo-bg.jpg";
         img.onload = function() { 
-            mainLargePhoto.setAttribute("src", "https://www.halfdomephoto.com/img/mobile-bg.jpg");
+            mainLargePhoto.setAttribute("src", "http://192.168.1.3:8080/img/portland-skyline-photo-bg.jpg");
             mainLargePhoto.classList.add("loaded");
             progressContainer.style.display = "none";
         }

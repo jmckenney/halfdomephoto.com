@@ -1,2 +1,4 @@
 node_modules
+www/css/*.css
+www/js/bundle.js
 .DS_Store
